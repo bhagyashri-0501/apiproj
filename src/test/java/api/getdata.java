@@ -11,6 +11,7 @@ import org.testng.annotations.Test;
 import utilities.APIUtils;
 
 import java.io.IOException;
+import java.time.Clock;
 
 import static io.restassured.RestAssured.given;
 import static utilities.APIUtils.api_config;
@@ -19,6 +20,7 @@ public class getdata {
     @BeforeClass
     public void startUp() throws IOException {
         APIUtils.readAPIConfigs();
+        APIUtils.setBaseURL();
     }
 
     @Feature("API Test")
@@ -30,13 +32,10 @@ public class getdata {
         Response response=
         given()
         .when()
-        .get(api_config.getProperty("base_url1"));
+        .get("/users?page=2");
 
         response.then()
-        .statusCode(200);
-
-        System.out.println(response.body().asString());
-
+        .statusCode(200).log().all();
     }
 }
 

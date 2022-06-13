@@ -20,8 +20,8 @@ public class APIUtils {
         FileInputStream objfile = new FileInputStream(System.getProperty("user.dir") + "/src/test/java/resources/api_config.properties");
         api_config.load(objfile);
     }
-    public static void setBaseURL2() throws IOException {
-        RestAssured.baseURI =api_config.getProperty("base_url2");
+    public static void setBaseURL() throws IOException {
+        RestAssured.baseURI =api_config.getProperty("base_url");
     }
     public static Response getRequest(String endpoint){
         request.header("Content-Type", "application/json");

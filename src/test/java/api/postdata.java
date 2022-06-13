@@ -18,7 +18,7 @@ public class postdata {
     @BeforeClass
     public void startUp() throws IOException {
         APIUtils.readAPIConfigs();
-        APIUtils.setBaseURL2();
+        APIUtils.setBaseURL();
     }
 
     @Feature("API Test")
@@ -30,7 +30,7 @@ public class postdata {
         String body = Files.readString(Path.of(System.getProperty("user.dir") + "/src/test/java/resources/api_test_data_create_userJSONBody.json"));
 
 
-         String baseURI = "base_url2";
+         String baseURI = "base_url";
 
         Response response= given().
                 header("Content-Type", "application/json").
@@ -42,9 +42,6 @@ public class postdata {
 
                response.then()
                 .statusCode(201).log().all();
-
-        System.out.println(response.body().asString());
-
 
     }
 }
